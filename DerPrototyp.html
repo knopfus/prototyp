@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="de">
+<head><title>Der Prototyp - Das Computerspiel</title><meta charset="utf-8"/></head>
+<body>
+
+
+
+
+
+
+
+
+<!--  Hier definierst du, was der Browser beim Laden anzeigen soll.  -->
+
+<h1>Der Prototyp der Zeitmaschine - Das Computerspiel</h1>
+
+<div id="Spiel">
+
+<div id="Erste-Spalte">
+
+  <div id="Status">
+    Raum: <span id="Status-Raum">(lade...)</span>
+    -
+    Ausgewählte Aktion: <span id="Status-Aktion">(lade...)</span>
+  </div>
+
+  <div id="Raum">
+    <!-- img zeigt ein Bild an. Welches, wird dann weiter unten programmiert. -->
+    <img
+         id="Raum-Bild"
+         src="https://mharwood.uk/wp-content/uploads/2019/09/Loading_Icon.gif">
+    </img>
+
+    <div id="Buecher">
+    <img id="Buecher-Bild"
+         src="Buecher.png">
+     </img>
+    </div>
+  </div>
+
+</div> <!-- Erste-Spalte -->
+
+<div id="Zweite-Spalte">
+
+  <div id="Konsole">
+
+    <div id="Besitz">
+  
+      <!-- In dieser Version gibt es noch keinen Besitz, ist immer leer -->
+      <div id="Besitz-Leer">
+      </div>
+  
+    </div>
+
+    <div id="Aktionen">
+      
+      <div id="Aktion-Gehe-Zu">
+        &#128694;
+      </div>
+
+      <div id="Aktion-Nehmen">
+        &#9995;
+      </div>
+
+    </div>
+    
+  </div>
+</div> <!-- Zweite-Spalte -->
+
+</div> <!-- Spiel -->
+
+<link rel="stylesheet" href="DerPrototyp.css"/>
+<script type="text/javascript" src="DerPrototyp.js"></script>
+
+</body>
+</html>                                                                                               
