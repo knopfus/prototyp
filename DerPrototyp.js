@@ -51,8 +51,8 @@ function GeheZu( ZielRaumName ) {
 
 function Nehmen( Gegenstand ) {
   window.Spielstand.Besitz.push( Gegenstand );
-  
   NeuenSpielstandAnzeigen();
+  KeineAktionAuswählen()
 }
 
 function SindBücherImRaum() {
@@ -126,6 +126,7 @@ function AktionNehmenAuswählen() {
 
 function KeineAktionAuswählen() {
   document.getElementById("Aktion-Gehe-Zu").classList.remove("aktiv");
+  document.getElementById("Aktion-Nehmen").classList.remove("aktiv");
   window.Spielstand.Aktion = "Keine"
   NeuenSpielstandAnzeigen();
 }
