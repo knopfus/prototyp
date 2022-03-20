@@ -18,8 +18,19 @@
   #BuecherInBesitz { height: 75px; width: 100px; visibility: hidden; }
   #BuecherInBesitz-Bild { width: 100%; }
 
-  #Aktionen { height: 130px; padding: 10px; }
-  #Aktion-Gehe-Zu { width: 48px; height: 48px; font-size: 38px; text-align: center; border: 1px outset; }
-  #Aktion-Gehe-Zu.aktiv { border-style: inset; }
-  #Aktion-Nehmen { width: 48px; height: 48px; font-size: 38px; text-align: center; border: 1px outset; }
-  #Aktion-Nehmen.aktiv { border-style: inset; }
+  #Aktionen { /*height: 130px;*/ padding: 10px; }
+
+  .Aktion {
+      display: inline-block;
+      width: 48px;
+      height: 48px;
+      font-size: 38px;
+      text-align: center;
+      border: 1px outset;
+  }
+  .Aktion.aktiv { border-style: inset; }
+
+  #IQ {
+      padding: 10px;
+      font: bold 1.5em fantasy;
+  }

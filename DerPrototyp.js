@@ -35,7 +35,8 @@ window.Räume = {
 window.Spielstand = {
     RaumName: "",
     Aktion: "Keine",
-    Besitz: []
+    Besitz: [],
+    IQ: 130
 }
 
 
@@ -43,16 +44,22 @@ window.Spielstand = {
 // --- Jetzt bereiten wir die Funktionen (Abläufe, Unterprogrammli) vor, die in bestimmen Situationen ausgeführt werden sollen
 
 function GeheZu( ZielRaumName ) {
-  window.Spielstand.RaumName = ZielRaumName;
-  window.Spielstand.Raum = window.Räume[ZielRaumName];
+    window.Spielstand.RaumName = ZielRaumName;
+    window.Spielstand.Raum = window.Räume[ZielRaumName];
 
-  NeuenSpielstandAnzeigen();
+    NeuenSpielstandAnzeigen();
 }
 
 function Nehmen( Gegenstand ) {
-  window.Spielstand.Besitz.push( Gegenstand );
-  NeuenSpielstandAnzeigen();
-  KeineAktionAuswählen()
+    window.Spielstand.Besitz.push( Gegenstand );
+    KeineAktionAuswählen()
+    NeuenSpielstandAnzeigen();
+}
+
+function Lernen( Gegenstand ) {
+    window.Spielstand.IQ = window.Spielstand.IQ + 2;
+    KeineAktionAuswählen()
+    NeuenSpielstandAnzeigen();
 }
 
 function SindBücherImRaum() {
@@ -87,6 +94,8 @@ function NeuenSpielstandAnzeigen() {
   // Status anzeigen
   document.getElementById("Status-Raum").innerText = window.Spielstand.RaumName;
   document.getElementById("Status-Aktion").innerText = window.Spielstand.Aktion;
+
+  document.getElementById("IQ").innerText = "IQ: " + window.Spielstand.IQ;
 
   document.getElementById("Raum-Bild").src = window.Spielstand.Raum.BildSrc;
 
@@ -126,9 +135,16 @@ function AktionNehmenAuswählen() {
   NeuenSpielstandAnzeigen();
 }
 
+function AktionLernenAuswählen() {
+  document.getElementById("Aktion-Lernen").classList.add("aktiv");
+  window.Spielstand.Aktion = "Lernen";
+  NeuenSpielstandAnzeigen();
+}  
+
 function KeineAktionAuswählen() {
   document.getElementById("Aktion-Gehe-Zu").classList.remove("aktiv");
   document.getElementById("Aktion-Nehmen").classList.remove("aktiv");
+  document.getElementById("Aktion-Lernen").classList.remove("aktiv");
   window.Spielstand.Aktion = "Keine"
   NeuenSpielstandAnzeigen();
 }
@@ -143,12 +159,19 @@ GeheZu("Vergangenheit");
 // --- Nun versehen wir die Aktionsknöpfe mit Magie:
 document.getElementById("Aktion-Gehe-Zu").onclick = AktionGeheZuAuswählen;
 document.getElementById("Aktion-Nehmen").onclick = AktionNehmenAuswählen;
+document.getElementById("Aktion-Lernen").onclick = AktionLernenAuswählen;
 
 // --- Nun versehen wir die Gegenstände mit Magie:
 document.getElementById("Buecher").onclick = function() {
   console.log("Bücher angeklickt");
   if (window.Spielstand.Aktion == "Nehmen") {
     Nehmen ( "Buecher" );
+  }
+}
+
+document.getElementById("BuecherInBesitz").onclick = function() {
+  if (window.Spielstand.Aktion == "Lernen") {
+    Lernen ( "BuecherInBesitz" )
   }
 }
 
