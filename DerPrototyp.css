@@ -11,9 +11,13 @@
 
   #Buecher { position: absolute; top: 180px; left: 200px; height: 75px; width: 100px; border: 0px solid black; visibility: hidden; }
   #Buecher-Bild { width: 100% }
+
   #Konsole { height: 200px; }
-  #Besitz { height: 70px; padding: 10px; }
-  #BuecherInBesitz {}
+
+  #Besitz { height: 70px; padding: 10px; background-color: none; }
+  #BuecherInBesitz { height: 75px; width: 100px; visibility: hidden; }
+  #BuecherInBesitz-Bild { width: 100%; }
+
   #Aktionen { height: 130px; padding: 10px; }
   #Aktion-Gehe-Zu { width: 48px; height: 48px; font-size: 38px; text-align: center; border: 1px outset; }
   #Aktion-Gehe-Zu.aktiv { border-style: inset; }

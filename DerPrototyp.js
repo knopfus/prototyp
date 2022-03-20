@@ -72,9 +72,11 @@ function BücherImRaumNichtAnzeigen() {
 }
 
 function BücherImBesitzAnzeigen() {
+    document.getElementById("BuecherInBesitz").style.visibility = "visible";
 }
 
 function BücherImBesitzNichtAnzeigen() {
+    document.getElementById("BuecherInBesitz").style.visibility = "hidden";
 }
 
 // Zeigt alles richtig an
