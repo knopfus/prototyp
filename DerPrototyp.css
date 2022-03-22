@@ -9,16 +9,16 @@
   #Konsole, #Besitz, #Aktionen { width: 100%; }
   #Raum, #Raum-Bild { height: 600px; }
 
-  #Buecher { position: absolute; top: 180px; left: 200px; height: 75px; width: 100px; border: 0px solid black; visibility: hidden; }
-  #Buecher-Bild { width: 100% }
+  #Bücher { position: absolute; top: 180px; left: 200px; height: 75px; width: 100px; border: 0px solid black; visibility: hidden; }
+  #Bücher-Bild { width: 100% }
 
   #Konsole { height: 200px; }
 
   #Besitz { height: 70px; padding: 10px; background-color: none; }
-  #BuecherInBesitz { height: 75px; width: 100px; visibility: hidden; }
-  #BuecherInBesitz-Bild { width: 100%; }
+  #BücherInBesitz { height: 75px; width: 100px; visibility: hidden; }
+  #BücherInBesitz-Bild { width: 100%; }
 
-  #Aktionen { /*height: 130px;*/ padding: 10px; }
+  #Aktionen { padding: 10px; }
 
   .Aktion {
       display: inline-block;
