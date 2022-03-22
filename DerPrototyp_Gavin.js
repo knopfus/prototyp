@@ -29,7 +29,8 @@ window.Gegenstände = {
 
         mögliche_Aktionen: {
             nehmen: { wo: "im_Raum" },
-            lernen: { wo: "im_Besitz", zusätzlicher_IQ: 2 }
+            lernen: { wo: "im_Besitz", zusätzlicher_IQ: 2,
+                      gelernt: false }
         }
 
     }
@@ -52,9 +53,10 @@ window.Aktionen = {
     },
 
     lernen: function( Gegenstand, Raum, Spieler ) {
-
-        Spieler.hat_IQ += Gegenstand.mögliche_Aktionen.lernen.zusätzlicher_IQ;
-
+        if (Gegenstand.mögliche_Aktionen.lernen.gelernt == false) {
+            Spieler.hat_IQ += Gegenstand.mögliche_Aktionen.lernen.zusätzlicher_IQ;
+        }
+        Gegenstand.mögliche_Aktionen.lernen.gelernt = true;
     }
 
 }
