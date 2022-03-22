@@ -9,14 +9,25 @@
   #Konsole, #Besitz, #Aktionen { width: 100%; }
   #Raum, #Raum-Bild { height: 600px; }
 
-  #Bücher { position: absolute; top: 180px; left: 200px; height: 75px; width: 100px; border: 0px solid black; visibility: hidden; }
-  #Bücher-Bild { width: 100% }
 
   #Konsole { height: 200px; }
 
   #Besitz { height: 70px; padding: 10px; background-color: none; }
-  #BücherInBesitz { height: 75px; width: 100px; visibility: hidden; }
-  #BücherInBesitz-Bild { width: 100%; }
+
+
+
+  .Gegenstand { position: absolute; border: 0px solid black; visibility: hidden; }
+  .Gegenstand > img { max-width: 100%; max-height: 100% }
+  .GegenstandInBesitz { display: inline-block; visibility: hidden; }
+  .GegenstandInBesitz img { max-width: 100%; max-height: 100% }
+
+  #Bücher { top: 180px; left: 200px; height: 75px; width: 100px; }
+  #BücherInBesitz { height: 75px; width: 100px; }
+
+  #Computer { top: 350px; left: 500px; height: 75px; width: 100px; }
+  #ComputerInBesitz { height: 75px; /*width: 100px;*/ }
+
+
 
   #Aktionen { padding: 10px; }
 

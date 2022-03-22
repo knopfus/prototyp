@@ -29,8 +29,18 @@ window.Gegenstände = {
 
         mögliche_Aktionen: {
             nehmen: { wo: "im_Raum" },
-            lernen: { wo: "im_Besitz", zusätzlicher_IQ: 2,
-                      gelernt: false }
+            lernen: { wo: "im_Besitz", zusätzlicher_IQ: 2, gelernt: false }
+        }
+
+    },
+
+    "Computer": {
+
+        in_Raum: "Gegenwart",
+
+        mögliche_Aktionen: {
+            nehmen: { wo: "im_Raum" },
+            lernen: { wo: "im_Besitz", zusätzlicher_IQ: 3, gelernt: false }
         }
 
     }
@@ -47,7 +57,7 @@ window.Aktionen = {
     nehmen: function( Gegenstand, Raum, Spieler ) {
 
         var index = Raum.Gegenstände.indexOf( Gegenstand );
-        Raum.Gegenstände.splice( index );
+        Raum.Gegenstände.splice( index, 1 );
         Spieler.besitzt_Gegenstände.push( Gegenstand );
 
     },
@@ -63,7 +73,7 @@ window.Aktionen = {
 
 window.Spieler = {
 
-    im_Raum: "Vergangenheit",
+    im_Raum: "Gegenwart",
     macht_Aktion: "keine",
 
     besitzt_Gegenstände: [],
