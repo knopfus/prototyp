@@ -21,9 +21,7 @@ window.Räume = {
 
     Höhle_Vergangenheit: {
 
-        mögliche_Aktionen: {
-            gehe_zu: { Raum: "Gegenwart" }
-        },
+        mögliche_Aktionen: { },
 
         Bild_Datei: "Höhle.jpeg"
     }
@@ -36,7 +34,6 @@ window.Gegenstände = {
         in_Raum: "Gegenwart",
 
         mögliche_Aktionen: {
-            gehe_zu: { Raum: "Vergangenheit" },
             nehmen: { wo: "im_Raum" },
             lernen: { wo: "im_Besitz", zusätzlicher_IQ: 2, gelernt: false }
         }
@@ -52,18 +49,27 @@ window.Gegenstände = {
             lernen: { wo: "im_Besitz", zusätzlicher_IQ: 3, gelernt: false }
         }
 
+    },
+
+    "Zeitmaschine_Höhle_Vergangenheit": {
+
+        in_Raum: "Höhle_Vergangenheit",
+
+        mögliche_Aktionen: {
+            gehe_zu: { wo: "im_Raum", Raum: "Gegenwart" }
+        }
     }
 };
 
 window.Aktionen = {
 
-    gehe_zu: function( Gegenstand, Raum, Spieler ) {
+    gehe_zu: function( Gegenstand, Raum, Spieler, Aktion ) {
 
-        Spieler.im_Raum = Raum.mögliche_Aktionen.gehe_zu.Raum;
+        Spieler.im_Raum = Aktion.Raum;
 
     },
 
-    nehmen: function( Gegenstand, Raum, Spieler ) {
+    nehmen: function( Gegenstand, Raum, Spieler, Aktion ) {
 
         var index = Raum.Gegenstände.indexOf( Gegenstand );
         Raum.Gegenstände.splice( index, 1 );
@@ -71,7 +77,7 @@ window.Aktionen = {
 
     },
 
-    lernen: function( Gegenstand, Raum, Spieler ) {
+    lernen: function( Gegenstand, Raum, Spieler, Aktion ) {
         if (Gegenstand.mögliche_Aktionen.lernen.gelernt == false) {
             Spieler.hat_IQ += Gegenstand.mögliche_Aktionen.lernen.zusätzlicher_IQ;
         }

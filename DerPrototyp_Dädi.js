@@ -19,11 +19,12 @@ window.Spiel = (function(Räume, Gegenstände, Aktionen, Spieler) {
     for (var Raum_Name in Räume) {
         var Raum = Räume[Raum_Name];
         for (var Aktion_Name in Raum.mögliche_Aktionen) {
-            Raum.mögliche_Aktionen[Aktion_Name].ausführen = (function(Aktion_Name, Raum, Spieler) {
+            var Aktion = Raum.mögliche_Aktionen[Aktion_Name];
+            Aktion.ausführen = (function(Aktion_Name, Raum, Spieler, Aktion) {
                 return function() {
-                    Aktionen[Aktion_Name]( "keiner", Raum, Spieler );
+                    Aktionen[Aktion_Name]( "keiner", Raum, Spieler, Aktion );
                 };
-            }( Aktion_Name, Raum, Spieler ));
+            }( Aktion_Name, Raum, Spieler, Aktion ));
         }        
     }
 
@@ -31,11 +32,12 @@ window.Spiel = (function(Räume, Gegenstände, Aktionen, Spieler) {
     for (var Gegenstand_Name in Gegenstände) {
         var Gegenstand = Gegenstände[Gegenstand_Name];
         for (var Aktion_Name in Gegenstand.mögliche_Aktionen) {
-            Gegenstand.mögliche_Aktionen[Aktion_Name].ausführen = (function( Aktion_Name, Gegenstand, Räume, Spieler ) {
+            var Aktion = Gegenstand.mögliche_Aktionen[Aktion_Name];
+            Aktion.ausführen = (function( Aktion_Name, Gegenstand, Räume, Spieler, Aktion ) {
                 return function() {
-                    Aktionen[Aktion_Name]( Gegenstand, Räume[Gegenstand.in_Raum], Spieler );
+                    Aktionen[Aktion_Name]( Gegenstand, Räume[Gegenstand.in_Raum], Spieler, Aktion );
                 };
-            }( Aktion_Name, Gegenstand, Räume, Spieler ));
+            }( Aktion_Name, Gegenstand, Räume, Spieler, Aktion ));
         }
     }
 
@@ -65,9 +67,11 @@ function Gegenstände_im_Besitz_anzeigen() {
             visibility = "hidden";
         }
 
-        var element_id = Gegenstand_Name + "InBesitz";
+        var element = document.getElementById( Gegenstand_Name + "InBesitz" );
 
-        document.getElementById( element_id ).style.visibility = visibility;
+        if (element != null) {
+            element.style.visibility = visibility;
+        }
     }
 }
 
@@ -147,17 +151,20 @@ for (var Gegenstand_Name in Spiel.Gegenstände) {
         };
     }( Gegenstand ));
 
-    document.getElementById(Gegenstand_Name + "InBesitz").onclick = (function(Gegenstand) {
-        return function() {
+    var element = document.getElementById(Gegenstand_Name + "InBesitz");
+    if (element != null) {
+        element.onclick = (function(Gegenstand) {
+            return function() {
 
-            var mögliche_Aktion = Gegenstand.mögliche_Aktionen[Spiel.Spieler.macht_Aktion];
-            if ( mögliche_Aktion && mögliche_Aktion.wo == "im_Besitz" ) {
-                mögliche_Aktion.ausführen();
-                Spiel.Spieler.macht_Aktion = "keine";
-                zeige_Spiel_an();
-            }
-        };
-    }( Gegenstand ));
+                var mögliche_Aktion = Gegenstand.mögliche_Aktionen[Spiel.Spieler.macht_Aktion];
+                if ( mögliche_Aktion && mögliche_Aktion.wo == "im_Besitz" ) {
+                    mögliche_Aktion.ausführen();
+                    Spiel.Spieler.macht_Aktion = "keine";
+                    zeige_Spiel_an();
+                }
+            };
+        }( Gegenstand ));
+    }
 }
 
 
