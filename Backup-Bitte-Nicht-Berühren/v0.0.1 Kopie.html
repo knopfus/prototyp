@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="de">
+<head><title>Der Prototyp - Das Computerspiel</title><meta charset="utf-8"/></head>
+<body>
+
+<!--  Hier definierst du, was der Browser beim Laden anzeigen soll.  -->
+
+<h1>Der Prototyp der Zeitmaschine - Das Computerspiel</h1>
+
+<div id="Spiel">
+
+<div id="Erste-Spalte">
+
+  <div id="Status">
+    Raum: <span id="Status-Raum">(lade...)</span>
+    -
+    Ausgewählte Aktion: <span id="Status-Aktion">(lade...)</span>
+  </div>
+
+  <div id="Raum">
+    <!-- img zeigt ein Bild an. Welches, wird dann weiter unten programmiert. -->
+    <img
+         id="Raum-Bild"
+         src="https://mharwood.uk/wp-content/uploads/2019/09/Loading_Icon.gif">
+    </img>
+  </div>
+
+</div> <!-- Erste-Spalte -->
+
+<div id="Zweite-Spalte">
+
+  <div id="Konsole">
+
+    <div id="Besitz">
+  
+      <!-- In dieser Version gibt es noch keinen Besitz, ist immer leer -->
+      <div id="Besitz-Leer">
+      </div>
+  
+    </div>
+
+    <div id="Aktionen">
+      
+      <div id="Aktion-Gehe-Zu">
+        &#128694;
+      </div>
+
+    </div>
+    
+  </div>
+</div> <!-- Zweite-Spalte -->
+
+</div> <!-- Spiel -->
+
+
+
+
+<!-- Im style definierst du, wie die angezeigten Elemente aussehen sollen. -->
+
+<style>
+  #Spiel { display: grid; grid-template-columns: 533px 300px; }
+  #Erste-Spalte, #Zweite-Spalte { border: 1px solid black; display: inline-grid; }
+
+  #Raum, #Raum-Bild { width: 100%; }
+  #Konsole, #Besitz, #Aktionen { width: 100%; }
+  #Raum, #Raum-Bild { height: 400px; }
+  #Konsole { height: 200px; }
+  #Besitz { height: 70px; padding: 10px; }
+  #Besitz-Leer { width: 50px; height: 50px; background-color: silver; }
+  #Aktionen { height: 130px; padding: 10px; }
+  #Aktion-Gehe-Zu { width: 48px; height: 48px; font-size: 38px; text-align: center; border: 1px outset; }
+  #Aktion-Gehe-Zu.aktiv { border-style: inset; }
+</style>
+
+
+
+<!-- Im script kannst du programmieren, was nach dem Laden passieren soll. --> 
+<script>
+
+
+
+// --- Als erstes bauen wir unsere Datenstrukturen.
+// In eine Variable kann man sich irgendetwas "merken". Hier definieren wir die Räume (Knoten).
+// Jeder Raum hat Übergänge (Kanten) zu einem Zielraum, sowie ein BildSrc zum Anzeigen.
+// Damit das Gemerkte solange bleibt, wie das Fenster offen ist, speichern wir es "ins Fenster hinein": mit "window."
+window.Räume = {
+  DeLorean: {
+    Übergänge: [
+      {
+        ZielRaumName: "Ende"
+      }
+    ],
+    BildSrc: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Delorean5.jpg/800px-Delorean5.jpg"
+  },
+  Ende: {
+    Übergänge: [
+      {
+        ZielRaumName: "DeLorean"
+      }
+    ],
+    BildSrc: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/DFB_Pokal_der_Frauen_20180519.jpg/640px-DFB_Pokal_der_Frauen_20180519.jpg"
+  }
+}
+
+
+// Der Spielstand besteht aktuell nur aus dem Raum, wo wir uns befinden, und der ausgewählten Aktion.
+window.SpielStand = {
+  RaumName: "DeLorean",
+  Raum: window.Räume["DeLorean"],
+  Aktion: "Keine"
+}
+
+
+
+// --- Jetzt bereiten wir die Funktionen (Abläufe, Unterprogrammli) vor, die in bestimmen Situationen ausgeführt werden sollen
+
+function GeheZu( ZielRaumName ) {
+  window.SpielStand.RaumName = ZielRaumName;
+  window.SpielStand.Raum = window.Räume[ZielRaumName];
+
+  NeuenSpielStandAnzeigen();
+}
+
+
+// Zeigt alles richtig an
+function NeuenSpielStandAnzeigen() {
+  console.log("NeuenSpielStandAnzeigen: ");
+  console.log(JSON.stringify(window.SpielStand));
+
+  // Status anzeigen
+  document.getElementById("Status-Raum").innerText = window.SpielStand.RaumName;
+  document.getElementById("Status-Aktion").innerText = window.SpielStand.Aktion;
+
+  document.getElementById("Raum-Bild").src = window.SpielStand.Raum.BildSrc;
+}
+
+function AktionGeheZuAuswählen() {
+  document.getElementById("Aktion-Gehe-Zu").classList.add("aktiv");
+  window.SpielStand.Aktion = "Gehe-Zu";
+  NeuenSpielStandAnzeigen();
+}
+
+function KeineAktionAuswählen() {
+  document.getElementById("Aktion-Gehe-Zu").classList.remove("aktiv");
+  window.SpielStand.Aktion = "Keine"
+  NeuenSpielStandAnzeigen();
+}
+
+
+
+// --- Nun erstmal alles richtig anzeigen...
+//NeuenSpielStandAnzeigen();
+
+
+
+// --- Nun versehen wir die Aktionsknöpfe mit Magie:
+document.getElementById("Aktion-Gehe-Zu").onclick = AktionGeheZuAuswählen;
+
+
+// --- Und man muss die Aktion auch ausführen können, indem man aufs Bild klickt
+document.getElementById("Raum-Bild").onclick = function() {
+  // Welche Aktion ist aktiv? (Momentan gibt es nur eine...)
+  if (window.SpielStand.Aktion == "Gehe-Zu") {
+    
+    // Gehe-zu ist aktiv => In welchen Zielraum soll man kommen? Momentan machen wir es uns einfach:
+    // Jeder Raum hat nur einen Übergang, also nutzen wir einfach den einzigen, den es gibt.
+    // Später müsste man dann je nachdem, wo man hin klickt, an einen anderen Ort kommen!
+    var aktuellerRaum = window.SpielStand.Raum;
+    var einzigerÜbergang = aktuellerRaum.Übergänge[0]; // Aufzählungen beginnen immer mit 0.
+    
+    GeheZu(einzigerÜbergang.ZielRaumName);
+    
+    KeineAktionAuswählen();
+  }
+};
+
+
+</script>
+
+</body>
+</html>

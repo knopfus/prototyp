@@ -1,3 +1,4 @@
+// Das "Spiel" bringt alles aus "DerPrototyp_Gavin.js" zusammen, damit es mit dem HTML-Dokument verknüpft werden kann.
 
 
 window.Spiel = (function(Räume, Gegenstände, Aktionen, Spieler) {
@@ -30,11 +31,11 @@ window.Spiel = (function(Räume, Gegenstände, Aktionen, Spieler) {
     for (var Gegenstand_Name in Gegenstände) {
         var Gegenstand = Gegenstände[Gegenstand_Name];
         for (var Aktion_Name in Gegenstand.mögliche_Aktionen) {
-            Gegenstand.mögliche_Aktionen[Aktion_Name].ausführen = (function( Aktion_Name, Gegenstand, Spieler ) {
+            Gegenstand.mögliche_Aktionen[Aktion_Name].ausführen = (function( Aktion_Name, Gegenstand, Räume, Spieler ) {
                 return function() {
                     Aktionen[Aktion_Name]( Gegenstand, Räume[Gegenstand.in_Raum], Spieler );
                 };
-            }( Aktion_Name, Gegenstand, Spieler ));
+            }( Aktion_Name, Gegenstand, Räume, Spieler ));
         }
     }
 
@@ -48,7 +49,10 @@ window.Spiel = (function(Räume, Gegenstände, Aktionen, Spieler) {
 } (window.Räume, window.Gegenstände, window.Aktionen, window.Spieler));
 
 
-// Der Spielstand besteht aktuell nur aus dem Raum, wo wir uns befinden, und der ausgewählten Aktion.
+
+
+
+// "Ausgabe" -- der folgende Code macht das Spiel im HTML-Dokument sichtbar.
 
 
 function Gegenstände_im_Besitz_anzeigen() {

@@ -13,12 +13,20 @@ window.Räume = {
     Vergangenheit: {
 
         mögliche_Aktionen: {
-            gehe_zu: { Raum: "Gegenwart" }
+            gehe_zu: { Raum: "Höhle_Vergangenheit" }
         },
 
         Bild_Datei: "Zimmer-Vergangenheit.png"
-    }
+    },
 
+    Höhle_Vergangenheit: {
+
+        mögliche_Aktionen: {
+            gehe_zu: { Raum: "Gegenwart" }
+        },
+
+        Bild_Datei: "Höhle.jpeg"
+    }
 };
 
 window.Gegenstände = {
@@ -28,6 +36,7 @@ window.Gegenstände = {
         in_Raum: "Gegenwart",
 
         mögliche_Aktionen: {
+            gehe_zu: { Raum: "Vergangenheit" },
             nehmen: { wo: "im_Raum" },
             lernen: { wo: "im_Besitz", zusätzlicher_IQ: 2, gelernt: false }
         }
@@ -73,7 +82,7 @@ window.Aktionen = {
 
 window.Spieler = {
 
-    im_Raum: "Gegenwart",
+    im_Raum: "Höhle_Vergangenheit",
     macht_Aktion: "keine",
 
     besitzt_Gegenstände: [],
