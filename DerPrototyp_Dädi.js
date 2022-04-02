@@ -165,9 +165,25 @@ function zeige_Spiel_an() {
 
     document.getElementById("Raum-Bild").src = Spiel.Spielstand.aktueller_Raum_Name + ".png";
 
-    var Luan_10 = document.getElementById("Luan_10");
-    Luan_10.style.left = Spiel.Spielstand.Luan_10.links + "px";
-    Luan_10.style.top = Spiel.Spielstand.Luan_10.oben + "px";
+    var Luan_10 = Spiel.Spielstand.Luan_10,
+        Luan_10_div = document.getElementById("Luan_10");
+
+    Luan_10_div.style.transition = "";
+
+    if (Luan_10.kommt_von) {
+        Luan_10_div.style.left = Luan_10.kommt_von.links + "px";
+        Luan_10_div.style.top = Luan_10.kommt_von.oben + "px";
+        Luan_10.kommt_von = null;
+        window.setTimeout(function() {
+            Luan_10_div.style.transition = "left 1s, top 1s";
+            Luan_10_div.style.left = Luan_10.links + "px";
+            Luan_10_div.style.top = Luan_10.oben + "px";
+        }, 0);
+    } else {
+        Luan_10_div.style.left = Luan_10.links + "px";
+        Luan_10_div.style.top = Luan_10.oben + "px";
+    }
+
 
     Gegenstände_in_Besitz_anzeigen();
     Gegenstände_im_Raum_anzeigen();

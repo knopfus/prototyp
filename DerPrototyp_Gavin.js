@@ -57,7 +57,7 @@ window.Gegenstände = {
             gehe_zu: {
                 wo: "im_Raum",
                 Ziel_Raum_Name: "Zimmer_Gegenwart",
-                Luan_10: { links: 530, oben: 70 }
+                Luan_10: { links: 520, oben: 72, kommt_von: { links: 550, oben: 71 } }
             }
         }
 
@@ -65,13 +65,13 @@ window.Gegenstände = {
 
     "Zeitmaschine_Zimmer_Gegenwart": {
 
-        wo: { Raum_Name: "Zimmer_Gegenwart", links: 614, oben: 70, breit: 80, hoch: 100, gedreht: 263 },
+        wo: { Raum_Name: "Zimmer_Gegenwart", links: 629, oben: 40, breit: 80, hoch: 150, gedreht: 263 },
 
         mögliche_Aktionen: {
             gehe_zu: {
                 wo: "im_Raum",
                 Ziel_Raum_Name: "Höhle_Vergangenheit",
-                Luan_10: { links: 200, oben: 490 }
+                Luan_10: { links: 200, oben: 490, kommt_von: { links: 370, oben: 90 } }
             }
         }
 
@@ -85,8 +85,10 @@ window.Aktionen = {
 
         Spielstand.vorheriger_Raum_Name = Spielstand.aktueller_Raum_Name;
         Spielstand.aktueller_Raum_Name = Aktion.Ziel_Raum_Name;
+
         Spielstand.Luan_10.links = Aktion.Luan_10.links;
         Spielstand.Luan_10.oben = Aktion.Luan_10.oben;
+        Spielstand.Luan_10.kommt_von = Aktion.Luan_10.kommt_von;
 
     },
 

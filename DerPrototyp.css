@@ -2,7 +2,7 @@
   #Spiel { display: grid; grid-template-columns: 700px 300px; }
   #Erste-Spalte, #Zweite-Spalte { border: 1px solid black; display: inline-grid; }
 
-  #Raum, #Raum-Bild { position: relative; width: 100%; }
+  #Raum, #Raum-Bild { position: relative; width: 100%; overflow: hidden; }
   #Konsole, #Besitz, #Aktionen { width: 100%; }
   #Raum, #Raum-Bild { height: 600px; }
 
