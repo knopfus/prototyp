@@ -115,6 +115,14 @@ function zeige_Spiel_an() {
 
     document.getElementById("Raum-Bild").src = Spiel.Räume[Spiel.Spieler.im_Raum].Bild_Datei;
 
+    document.getElementById("Luan_10").classList.add(Spiel.Spieler.im_Raum);
+
+    if ( Spiel.Spieler.vorheriger_Raum != "" ) {
+
+        document.getElementById("Luan_10").classList.remove(Spiel.Spieler.vorheriger_Raum);
+
+    }
+
     Gegenstände_im_Besitz_anzeigen();
     Gegenstände_im_Raum_anzeigen();
     ausgewählte_Aktion_anzeigen();

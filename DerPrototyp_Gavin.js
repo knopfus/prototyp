@@ -76,6 +76,7 @@ window.Aktionen = {
 
     gehe_zu: function( Gegenstand, Raum, Spieler, Aktion ) {
 
+        Spieler.vorheriger_Raum = Spieler.im_Raum;
         Spieler.im_Raum = Aktion.Raum;
 
     },
@@ -100,6 +101,7 @@ window.Aktionen = {
 window.Spieler = {
 
     im_Raum: "Höhle_Vergangenheit",
+    vorheriger_Raum: "",
     macht_Aktion: "keine",
 
     besitzt_Gegenstände: [],
