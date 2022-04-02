@@ -1,7 +1,7 @@
 // Das "Spiel" bringt alles aus "DerPrototyp_Gavin.js" zusammen, damit es mit dem HTML-Dokument verknüpft werden kann.
 
 
-window.Spiel = (function(Räume, Gegenstände, Aktionen, Spieler) {
+window.Spiel = (function(Räume, Gegenstände, Aktionen, Spielstand) {
 
     // Räume mit "ihren" Gegenständen füllen
     for (var Raum_Name in Räume) {
@@ -20,11 +20,11 @@ window.Spiel = (function(Räume, Gegenstände, Aktionen, Spieler) {
         var Raum = Räume[Raum_Name];
         for (var Aktion_Name in Raum.mögliche_Aktionen) {
             var Aktion = Raum.mögliche_Aktionen[Aktion_Name];
-            Aktion.ausführen = (function(Aktion_Name, Raum, Spieler, Aktion) {
+            Aktion.ausführen = (function(Aktion_Name, Raum, Spielstand, Aktion) {
                 return function() {
-                    Aktionen[Aktion_Name]( "keiner", Raum, Spieler, Aktion );
+                    Aktionen[Aktion_Name]( "keiner", Raum, Spielstand, Aktion );
                 };
-            }( Aktion_Name, Raum, Spieler, Aktion ));
+            }( Aktion_Name, Raum, Spielstand, Aktion ));
         }        
     }
 
@@ -33,11 +33,11 @@ window.Spiel = (function(Räume, Gegenstände, Aktionen, Spieler) {
         var Gegenstand = Gegenstände[Gegenstand_Name];
         for (var Aktion_Name in Gegenstand.mögliche_Aktionen) {
             var Aktion = Gegenstand.mögliche_Aktionen[Aktion_Name];
-            Aktion.ausführen = (function( Aktion_Name, Gegenstand, Räume, Spieler, Aktion ) {
+            Aktion.ausführen = (function( Aktion_Name, Gegenstand, Räume, Spielstand, Aktion ) {
                 return function() {
-                    Aktionen[Aktion_Name]( Gegenstand, Räume[Gegenstand.wo.Raum], Spieler, Aktion );
+                    Aktionen[Aktion_Name]( Gegenstand, Räume[Gegenstand.wo.Raum], Spielstand, Aktion );
                 };
-            }( Aktion_Name, Gegenstand, Räume, Spieler, Aktion ));
+            }( Aktion_Name, Gegenstand, Räume, Spielstand, Aktion ));
         }
     }
 
@@ -45,10 +45,10 @@ window.Spiel = (function(Räume, Gegenstände, Aktionen, Spieler) {
         Räume: Räume,
         Gegenstände: Gegenstände,
         Aktionen: Aktionen,
-        Spieler: Spieler
+        Spielstand: Spielstand
     };
 
-} (window.Räume, window.Gegenstände, window.Aktionen, window.Spieler));
+} (window.Räume, window.Gegenstände, window.Aktionen, window.Spielstand));
 
 
 
@@ -61,7 +61,7 @@ function Gegenstände_im_Besitz_anzeigen() {
     for (var Gegenstand_Name in Spiel.Gegenstände) {
         var Gegenstand = Spiel.Gegenstände[Gegenstand_Name];
         var visibility;
-        if (Spieler.besitzt_Gegenstände.includes(Gegenstand)) {
+        if (Spielstand.besitzt_Gegenstände.includes(Gegenstand)) {
             visibility = "visible";
         } else {
             visibility = "hidden";
@@ -76,7 +76,7 @@ function Gegenstände_im_Besitz_anzeigen() {
 }
 
 function Gegenstände_im_Raum_anzeigen() {
-    var Raum = Spiel.Räume[Spiel.Spieler.im_Raum];
+    var Raum = Spiel.Räume[Spiel.Spielstand.im_Raum];
 
     for (var Gegenstand_Name in Spiel.Gegenstände) {
         var Gegenstand = Spiel.Gegenstände[Gegenstand_Name];
@@ -99,7 +99,7 @@ function ausgewählte_Aktion_anzeigen() {
         var element = document.getElementById(element_id);
 
         element.classList.remove("aktiv");
-        if ( Spieler.macht_Aktion == Aktion_Name ) {
+        if ( Spielstand.macht_Aktion == Aktion_Name ) {
             element.classList.add("aktiv");
         }
     }
@@ -151,18 +151,18 @@ bereite_Spiel_vor();
 
 function zeige_Spiel_an() {
 
-    document.getElementById("Status-Raum").innerText = Spiel.Spieler.im_Raum;
-    document.getElementById("Status-Aktion").innerText = Spiel.Spieler.macht_Aktion;
+    document.getElementById("Status-Raum").innerText = Spiel.Spielstand.im_Raum;
+    document.getElementById("Status-Aktion").innerText = Spiel.Spielstand.macht_Aktion;
 
-    document.getElementById("IQ").innerText = "IQ: " + Spiel.Spieler.hat_IQ;
+    document.getElementById("IQ").innerText = "IQ: " + Spiel.Spielstand.hat_IQ;
 
-    document.getElementById("Raum-Bild").src = Spiel.Spieler.im_Raum + ".png";
+    document.getElementById("Raum-Bild").src = Spiel.Spielstand.im_Raum + ".png";
 
-    document.getElementById("Luan_10").classList.add(Spiel.Spieler.im_Raum);
+    document.getElementById("Luan_10").classList.add(Spiel.Spielstand.im_Raum);
 
-    if ( Spiel.Spieler.vorheriger_Raum != "" ) {
+    if ( Spiel.Spielstand.vorheriger_Raum != "" ) {
 
-        document.getElementById("Luan_10").classList.remove(Spiel.Spieler.vorheriger_Raum);
+        document.getElementById("Luan_10").classList.remove(Spiel.Spielstand.vorheriger_Raum);
 
     }
 
@@ -178,7 +178,7 @@ function zeige_Spiel_an() {
 for (var Aktion_Name in Spiel.Aktionen) {
     document.getElementById("Aktion-" + Aktion_Name).onclick = (function(Aktion_Name) {
         return function() {
-            Spiel.Spieler.macht_Aktion = Aktion_Name;
+            Spiel.Spielstand.macht_Aktion = Aktion_Name;
             zeige_Spiel_an();
         };
     }( Aktion_Name ));
@@ -193,10 +193,10 @@ for (var Gegenstand_Name in Spiel.Gegenstände) {
     document.getElementById( "Gegenstand_" + Gegenstand_Name ).onclick = (function(Gegenstand) {
         return function() {
 
-            var mögliche_Aktion = Gegenstand.mögliche_Aktionen[Spiel.Spieler.macht_Aktion];
+            var mögliche_Aktion = Gegenstand.mögliche_Aktionen[Spiel.Spielstand.macht_Aktion];
             if ( mögliche_Aktion && mögliche_Aktion.wo == "im_Raum" ) {
                 mögliche_Aktion.ausführen();
-                Spiel.Spieler.macht_Aktion = "keine";
+                Spiel.Spielstand.macht_Aktion = "keine";
                 zeige_Spiel_an();
             }
         };
@@ -207,10 +207,10 @@ for (var Gegenstand_Name in Spiel.Gegenstände) {
         element.onclick = (function(Gegenstand) {
             return function() {
 
-                var mögliche_Aktion = Gegenstand.mögliche_Aktionen[Spiel.Spieler.macht_Aktion];
+                var mögliche_Aktion = Gegenstand.mögliche_Aktionen[Spiel.Spielstand.macht_Aktion];
                 if ( mögliche_Aktion && mögliche_Aktion.wo == "im_Besitz" ) {
                     mögliche_Aktion.ausführen();
-                    Spiel.Spieler.macht_Aktion = "keine";
+                    Spiel.Spielstand.macht_Aktion = "keine";
                     zeige_Spiel_an();
                 }
             };
@@ -221,11 +221,11 @@ for (var Gegenstand_Name in Spiel.Gegenstände) {
 
 // --- Und man muss die Aktion auch ausführen können, indem man aufs Bild klickt
 document.getElementById("Raum-Bild").onclick = function() {
-    var Raum = Spiel.Räume[Spiel.Spieler.im_Raum];
-    var mögliche_Aktion = Raum.mögliche_Aktionen[Spiel.Spieler.macht_Aktion];
+    var Raum = Spiel.Räume[Spiel.Spielstand.im_Raum];
+    var mögliche_Aktion = Raum.mögliche_Aktionen[Spiel.Spielstand.macht_Aktion];
     if ( mögliche_Aktion ) {
         mögliche_Aktion.ausführen();
-        Spiel.Spieler.macht_Aktion = "keine";
+        Spiel.Spielstand.macht_Aktion = "keine";
         zeige_Spiel_an();
     }
 };

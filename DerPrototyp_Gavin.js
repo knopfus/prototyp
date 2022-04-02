@@ -71,31 +71,31 @@ window.Gegenstände = {
 
 window.Aktionen = {
 
-    gehe_zu: function( Gegenstand, Raum, Spieler, Aktion ) {
+    gehe_zu: function( Gegenstand, Raum, Spielstand, Aktion ) {
 
-        Spieler.vorheriger_Raum = Spieler.im_Raum;
-        Spieler.im_Raum = Aktion.Raum;
+        Spielstand.vorheriger_Raum = Spielstand.im_Raum;
+        Spielstand.im_Raum = Aktion.Raum;
 
     },
 
-    nehmen: function( Gegenstand, Raum, Spieler, Aktion ) {
+    nehmen: function( Gegenstand, Raum, Spielstand, Aktion ) {
 
         var index = Raum.Gegenstände.indexOf( Gegenstand );
         Raum.Gegenstände.splice( index, 1 );
-        Spieler.besitzt_Gegenstände.push( Gegenstand );
+        Spielstand.besitzt_Gegenstände.push( Gegenstand );
 
     },
 
-    lernen: function( Gegenstand, Raum, Spieler, Aktion ) {
+    lernen: function( Gegenstand, Raum, Spielstand, Aktion ) {
         if (Gegenstand.mögliche_Aktionen.lernen.gelernt == false) {
-            Spieler.hat_IQ += Gegenstand.mögliche_Aktionen.lernen.zusätzlicher_IQ;
+            Spielstand.hat_IQ += Gegenstand.mögliche_Aktionen.lernen.zusätzlicher_IQ;
         }
         Gegenstand.mögliche_Aktionen.lernen.gelernt = true;
     }
 
 }
 
-window.Spieler = {
+window.Spielstand = {
 
     im_Raum: "Höhle_Vergangenheit",
     vorheriger_Raum: "",
