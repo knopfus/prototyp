@@ -4,7 +4,7 @@ window.Räume = {
     Zimmer_Gegenwart: {
 
         mögliche_Aktionen: {
-            gehe_zu: { Ziel_Raum_Name: "Zimmer_Vergangenheit" }
+            gehe_zu: { Ziel_Raum_Name: "Zimmer_Vergangenheit", Luan_10: { links: 200, oben: 200 } }
         }
 
     },
@@ -12,7 +12,7 @@ window.Räume = {
     Zimmer_Vergangenheit: {
 
         mögliche_Aktionen: {
-            gehe_zu: { Ziel_Raum_Name: "Höhle_Vergangenheit" }
+            gehe_zu: { Ziel_Raum_Name: "Höhle_Vergangenheit", Luan_10: { links: 200, oben: 490 } }
         }
 
     },
@@ -54,7 +54,11 @@ window.Gegenstände = {
         wo: { Raum_Name: "Höhle_Vergangenheit", links: 360, oben: 70, breit: 100, hoch: 100 },
 
         mögliche_Aktionen: {
-            gehe_zu: { wo: "im_Raum", Ziel_Raum_Name: "Zimmer_Gegenwart" }
+            gehe_zu: {
+                wo: "im_Raum",
+                Ziel_Raum_Name: "Zimmer_Gegenwart",
+                Luan_10: { links: 530, oben: 70 }
+            }
         }
 
     },
@@ -64,7 +68,11 @@ window.Gegenstände = {
         wo: { Raum_Name: "Zimmer_Gegenwart", links: 614, oben: 70, breit: 80, hoch: 100, gedreht: 263 },
 
         mögliche_Aktionen: {
-            gehe_zu: { wo: "im_Raum", Ziel_Raum_Name: "Höhle_Vergangenheit" }
+            gehe_zu: {
+                wo: "im_Raum",
+                Ziel_Raum_Name: "Höhle_Vergangenheit",
+                Luan_10: { links: 200, oben: 490 }
+            }
         }
 
     }
@@ -77,6 +85,8 @@ window.Aktionen = {
 
         Spielstand.vorheriger_Raum_Name = Spielstand.aktueller_Raum_Name;
         Spielstand.aktueller_Raum_Name = Aktion.Ziel_Raum_Name;
+        Spielstand.Luan_10.links = Aktion.Luan_10.links;
+        Spielstand.Luan_10.oben = Aktion.Luan_10.oben;
 
     },
 
@@ -104,6 +114,8 @@ window.Spielstand = {
 
     aktueller_Raum_Name: "Höhle_Vergangenheit",
     vorheriger_Raum_Name: "",
+
+    Luan_10: { links: 200, oben: 490 },
 
     aktuelle_Aktion_Name: "",
 

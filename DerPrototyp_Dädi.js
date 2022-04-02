@@ -165,13 +165,9 @@ function zeige_Spiel_an() {
 
     document.getElementById("Raum-Bild").src = Spiel.Spielstand.aktueller_Raum_Name + ".png";
 
-    document.getElementById("Luan_10").classList.add(Spiel.Spielstand.aktueller_Raum_Name);
-
-    if ( Spiel.Spielstand.vorheriger_Raum_Name != "" ) {
-
-        document.getElementById("Luan_10").classList.remove(Spiel.Spielstand.vorheriger_Raum_Name);
-
-    }
+    var Luan_10 = document.getElementById("Luan_10");
+    Luan_10.style.left = Spiel.Spielstand.Luan_10.links + "px";
+    Luan_10.style.top = Spiel.Spielstand.Luan_10.oben + "px";
 
     Gegenstände_in_Besitz_anzeigen();
     Gegenstände_im_Raum_anzeigen();
