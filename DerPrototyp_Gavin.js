@@ -28,7 +28,7 @@ window.Gegenstände = {
 
     "Bücher": {
 
-        in_Raum: "Zimmer_Gegenwart",
+        wo: { Raum: "Zimmer_Gegenwart" },
 
         mögliche_Aktionen: {
             nehmen: { wo: "im_Raum" },
@@ -39,7 +39,7 @@ window.Gegenstände = {
 
     "Computer": {
 
-        in_Raum: "Zimmer_Gegenwart",
+        wo: { Raum: "Zimmer_Gegenwart" },
 
         mögliche_Aktionen: {
             nehmen: { wo: "im_Raum" },
@@ -50,7 +50,7 @@ window.Gegenstände = {
 
     "Zeitmaschine_Höhle_Vergangenheit": {
 
-        in_Raum: "Höhle_Vergangenheit",
+        wo: { Raum: "Höhle_Vergangenheit" },
 
         mögliche_Aktionen: {
             gehe_zu: { wo: "im_Raum", Raum: "Zimmer_Gegenwart" }
@@ -60,7 +60,7 @@ window.Gegenstände = {
 
     "Zeitmaschine_Zimmer_Gegenwart": {
 
-        in_Raum: "Zimmer_Gegenwart",
+        wo: { Raum: "Zimmer_Gegenwart" },
 
         mögliche_Aktionen: {
             gehe_zu: { wo: "im_Raum", Raum: "Höhle_Vergangenheit" }

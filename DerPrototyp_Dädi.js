@@ -10,8 +10,8 @@ window.Spiel = (function(Räume, Gegenstände, Aktionen, Spieler) {
     }
     for (var Gegenstand_Name in Gegenstände) {
         var Gegenstand = Gegenstände[Gegenstand_Name];
-        if ( Gegenstand.in_Raum ) {
-            Räume[ Gegenstand.in_Raum ].Gegenstände.push( Gegenstand );
+        if ( Gegenstand.wo ) {
+            Räume[ Gegenstand.wo.Raum ].Gegenstände.push( Gegenstand );
         }
     }
 
@@ -35,7 +35,7 @@ window.Spiel = (function(Räume, Gegenstände, Aktionen, Spieler) {
             var Aktion = Gegenstand.mögliche_Aktionen[Aktion_Name];
             Aktion.ausführen = (function( Aktion_Name, Gegenstand, Räume, Spieler, Aktion ) {
                 return function() {
-                    Aktionen[Aktion_Name]( Gegenstand, Räume[Gegenstand.in_Raum], Spieler, Aktion );
+                    Aktionen[Aktion_Name]( Gegenstand, Räume[Gegenstand.wo.Raum], Spieler, Aktion );
                 };
             }( Aktion_Name, Gegenstand, Räume, Spieler, Aktion ));
         }
@@ -67,7 +67,7 @@ function Gegenstände_im_Besitz_anzeigen() {
             visibility = "hidden";
         }
 
-        var element = document.getElementById( Gegenstand_Name + "InBesitz" );
+        var element = document.getElementById( "Gegenstand_in_Besitz_" + Gegenstand_Name );
 
         if (element != null) {
             element.style.visibility = visibility;
@@ -87,7 +87,7 @@ function Gegenstände_im_Raum_anzeigen() {
             visibility = "hidden";
         }
 
-        var element_id = Gegenstand_Name;
+        var element_id = "Gegenstand_" + Gegenstand_Name;
 
         document.getElementById( element_id ).style.visibility = visibility;
     }
@@ -105,7 +105,6 @@ function ausgewählte_Aktion_anzeigen() {
     }
 }
 
-// Zeigt alles richtig an
 function zeige_Spiel_an() {
 
     document.getElementById("Status-Raum").innerText = Spiel.Spieler.im_Raum;
@@ -147,7 +146,7 @@ for (var Aktion_Name in Spiel.Aktionen) {
 for (var Gegenstand_Name in Spiel.Gegenstände) {
     var Gegenstand = Spiel.Gegenstände[Gegenstand_Name];
 
-    document.getElementById(Gegenstand_Name).onclick = (function(Gegenstand) {
+    document.getElementById( "Gegenstand_" + Gegenstand_Name ).onclick = (function(Gegenstand) {
         return function() {
 
             var mögliche_Aktion = Gegenstand.mögliche_Aktionen[Spiel.Spieler.macht_Aktion];
@@ -159,7 +158,7 @@ for (var Gegenstand_Name in Spiel.Gegenstände) {
         };
     }( Gegenstand ));
 
-    var element = document.getElementById(Gegenstand_Name + "InBesitz");
+    var element = document.getElementById( "Gegenstand_in_Besitz_" + Gegenstand_Name );
     if (element != null) {
         element.onclick = (function(Gegenstand) {
             return function() {
