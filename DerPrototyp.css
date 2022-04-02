@@ -28,6 +28,13 @@
   #ComputerInBesitz { height: 75px; }
 
   #Zeitmaschine_Höhle_Vergangenheit { top: 70px; left: 360px; height: 100px; width: 80px; }
+  #Zeitmaschine_Zimmer_Gegenwart {
+      top: 70px;
+      left: 614px;
+      height: 100px;
+      width: 80px;
+      transform: rotate(263deg);
+  }
 
   #Aktionen { padding: 10px; }
 

@@ -58,6 +58,17 @@ window.Gegenstände = {
         mögliche_Aktionen: {
             gehe_zu: { wo: "im_Raum", Raum: "Gegenwart" }
         }
+
+    },
+
+    "Zeitmaschine_Zimmer_Gegenwart": {
+
+        in_Raum: "Gegenwart",
+
+        mögliche_Aktionen: {
+            gehe_zu: { wo: "im_Raum", Raum: "Höhle_Vergangenheit" }
+        }
+
     }
 };
 
