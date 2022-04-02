@@ -105,6 +105,50 @@ function ausgewählte_Aktion_anzeigen() {
     }
 }
 
+function bereite_Spiel_vor() {
+
+    for (var Gegenstand_Name in Spiel.Gegenstände) {
+        var Gegenstand = Gegenstände[Gegenstand_Name];
+
+        // Hier benutzen wir ein Element ("Gegenstand_Vorlage") als Kopiervorlage.
+        // Wir erzeugen automatisch nochmal genau das gleiche Element, verändern es und fügen
+        // es dann hinzu. So entstehen automatisch weitere Elemente für jeden Gegenstand.
+
+        var Gegenstand_Vorlage = document.getElementById("Gegenstand_Vorlage");
+        var Raum_div = document.getElementById("Raum");
+        var Gegenstand_div = Gegenstand_Vorlage.cloneNode(true);
+        var Gegenstand_img = Gegenstand_div.getElementsByTagName("img")[0];
+
+        Gegenstand_div.setAttribute("id", "Gegenstand_" + Gegenstand_Name);
+        if (Gegenstand.wo.links) { Gegenstand_div.style.left = Gegenstand.wo.links + "px"; }
+        if (Gegenstand.wo.oben) { Gegenstand_div.style.top = Gegenstand.wo.oben + "px"; }
+        if (Gegenstand.wo.breit) { Gegenstand_div.style.width = Gegenstand.wo.breit + "px"; }
+        if (Gegenstand.wo.hoch) { Gegenstand_div.style.height = Gegenstand.wo.hoch + "px"; }
+        if (Gegenstand.wo.gedreht) {
+            Gegenstand_div.style.transform = "rotate(" + Gegenstand.wo.gedreht + "deg)";
+        }
+
+        Gegenstand_img.setAttribute("src", Gegenstand_Name + ".png");
+
+        Raum_div.appendChild(Gegenstand_div);
+
+
+        // ... und nun nochmal das gleiche Prinzip im Besitz
+        var Gegenstand_in_Besitz_Vorlage = document.getElementById("Gegenstand_in_Besitz_Vorlage");
+        var Besitz_div = document.getElementById("Besitz");
+        var Gegenstand_in_Besitz_div = Gegenstand_in_Besitz_Vorlage.cloneNode(true);
+        var Gegenstand_in_Besitz_img = Gegenstand_in_Besitz_div.getElementsByTagName("img")[0];
+
+        Gegenstand_in_Besitz_div.setAttribute("id", "Gegenstand_in_Besitz_" + Gegenstand_Name);
+        Gegenstand_in_Besitz_img.setAttribute("src", Gegenstand_Name + ".png");
+        Besitz_div.appendChild(Gegenstand_in_Besitz_div);
+
+    }
+
+}
+
+bereite_Spiel_vor();
+
 function zeige_Spiel_an() {
 
     document.getElementById("Status-Raum").innerText = Spiel.Spieler.im_Raum;

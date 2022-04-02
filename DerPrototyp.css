@@ -1,6 +1,3 @@
-/* Im style definierst du, wie die angezeigten Elemente aussehen sollen. */
-
-
 
   #Spiel { display: grid; grid-template-columns: 700px 300px; }
   #Erste-Spalte, #Zweite-Spalte { border: 1px solid black; display: inline-grid; }
@@ -19,23 +16,8 @@
 
   .Gegenstand { position: absolute; border: 0px solid black; visibility: hidden; }
   .Gegenstand > img { max-width: 100%; max-height: 100% }
-  .Gegenstand_in_Besitz { display: inline-block; visibility: hidden; }
+  .Gegenstand_in_Besitz { display: inline-block; visibility: hidden; height: 75px; }
   .Gegenstand_in_Besitz img { max-width: 100%; max-height: 100% }
-
-  #Gegenstand_Bücher { top: 180px; left: 200px; height: 75px; width: 100px; }
-  #Gegenstand_in_Besitz_Bücher { height: 75px; width: 100px; }
-
-  #Gegenstand_Computer { top: 350px; left: 500px; height: 75px; width: 100px; }
-  #Gegenstand_in_Besitz_Computer { height: 75px; }
-
-  #Gegenstand_Zeitmaschine_Höhle_Vergangenheit { top: 70px; left: 360px; height: 100px; width: 80px; }
-  #Gegenstand_Zeitmaschine_Zimmer_Gegenwart {
-      top: 70px;
-      left: 614px;
-      height: 100px;
-      width: 80px;
-      transform: rotate(263deg);
-  }
 
   #Aktionen { padding: 10px; }
 
