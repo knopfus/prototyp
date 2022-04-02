@@ -1,29 +1,26 @@
 
 window.Räume = {
 
-    Gegenwart: {
+    Zimmer_Gegenwart: {
 
         mögliche_Aktionen: {
-            gehe_zu: { Raum: "Vergangenheit" }
-        },
+            gehe_zu: { Raum: "Zimmer_Vergangenheit" }
+        }
 
-        Bild_Datei: "Zimmer-Vergangenheit.png"
     },
 
-    Vergangenheit: {
+    Zimmer_Vergangenheit: {
 
         mögliche_Aktionen: {
             gehe_zu: { Raum: "Höhle_Vergangenheit" }
-        },
+        }
 
-        Bild_Datei: "Zimmer-Vergangenheit.png"
     },
 
     Höhle_Vergangenheit: {
 
-        mögliche_Aktionen: { },
+        mögliche_Aktionen: { }
 
-        Bild_Datei: "Höhle.jpeg"
     }
 };
 
@@ -31,7 +28,7 @@ window.Gegenstände = {
 
     "Bücher": {
 
-        in_Raum: "Gegenwart",
+        in_Raum: "Zimmer_Gegenwart",
 
         mögliche_Aktionen: {
             nehmen: { wo: "im_Raum" },
@@ -42,7 +39,7 @@ window.Gegenstände = {
 
     "Computer": {
 
-        in_Raum: "Gegenwart",
+        in_Raum: "Zimmer_Gegenwart",
 
         mögliche_Aktionen: {
             nehmen: { wo: "im_Raum" },
@@ -56,14 +53,14 @@ window.Gegenstände = {
         in_Raum: "Höhle_Vergangenheit",
 
         mögliche_Aktionen: {
-            gehe_zu: { wo: "im_Raum", Raum: "Gegenwart" }
+            gehe_zu: { wo: "im_Raum", Raum: "Zimmer_Gegenwart" }
         }
 
     },
 
     "Zeitmaschine_Zimmer_Gegenwart": {
 
-        in_Raum: "Gegenwart",
+        in_Raum: "Zimmer_Gegenwart",
 
         mögliche_Aktionen: {
             gehe_zu: { wo: "im_Raum", Raum: "Höhle_Vergangenheit" }

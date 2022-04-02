@@ -113,7 +113,7 @@ function zeige_Spiel_an() {
 
     document.getElementById("IQ").innerText = "IQ: " + Spiel.Spieler.hat_IQ;
 
-    document.getElementById("Raum-Bild").src = Spiel.Räume[Spiel.Spieler.im_Raum].Bild_Datei;
+    document.getElementById("Raum-Bild").src = Spiel.Spieler.im_Raum + ".png";
 
     document.getElementById("Luan_10").classList.add(Spiel.Spieler.im_Raum);
 
