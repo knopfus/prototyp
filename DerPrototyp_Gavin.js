@@ -12,7 +12,7 @@ window.Räume = {
     Zimmer_Vergangenheit: {
 
         mögliche_Aktionen: {
-            gehe_zu: { Ziel_Raum_Name: "Höhle_Vergangenheit", Luan_10: { links: 200, oben: 490 } }
+            gehe_zu: { Ziel_Raum_Name: "Labor", Luan_10: { links: 200, oben: 490 } }
         }
 
     },
@@ -21,6 +21,13 @@ window.Räume = {
 
         mögliche_Aktionen: { }
 
+    },
+
+    Labor: {
+
+        mögliche_Aktionen: {
+            gehe_zu: { Ziel_Raum_Name: "Höhle_Vergangenheit", Luan_10: { links: 200, oben: 490 } }
+        }
     }
 };
 
