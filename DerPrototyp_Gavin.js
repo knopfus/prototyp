@@ -12,7 +12,7 @@ window.Räume = {
     Zimmer_Vergangenheit: {
 
         mögliche_Aktionen: {
-            gehe_zu: { Ziel_Raum_Name: "Labor", Luan_10: { links: 200, oben: 490 } }
+            gehe_zu: { Ziel_Raum_Name: "Labor", Luan_10: { links: 400, oben: 60, kommt_von: { links: 400, oben: 0 } } }
         }
 
     },
@@ -82,6 +82,19 @@ window.Gegenstände = {
             }
         }
 
+    },
+
+    "Tür": {
+
+        wo: { Raum_Name: "Labor", links: 400, oben: 1, breit: 150, hoch: 75 },
+
+        mögliche_Aktionen: {
+            gehe_zu: {
+                wo: "im_Raum",
+                Ziel_Raum_Name: "Höhle_Vergangenheit",
+                Luan_10: { links: 400, oben: 50, kommt_von: { links: 400, oben: 0 } }
+            }
+        }
     }
 };
 
