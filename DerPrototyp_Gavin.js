@@ -51,7 +51,7 @@ window.Gegenstände = {
 
     "Zeitmaschine_Höhle_Vergangenheit": {
 
-        wo: { Raum_Name: "Höhle_Vergangenheit", links: 360, oben: 70, breit: 100, hoch: 100 },
+        wo: { Raum_Name: "Höhle_Vergangenheit", links: 669, oben: 480, breit: 80, hoch: 150, gedreht: 263 },
 
         mögliche_Aktionen: {
             gehe_zu: {
@@ -71,7 +71,7 @@ window.Gegenstände = {
             gehe_zu: {
                 wo: "im_Raum",
                 Ziel_Raum_Name: "Höhle_Vergangenheit",
-                Luan_10: { links: 200, oben: 490, kommt_von: { links: 370, oben: 90 } }
+                Luan_10: { links: 560, oben: 512, kommt_von: { links: 590, oben: 511 } }
             }
         }
 
