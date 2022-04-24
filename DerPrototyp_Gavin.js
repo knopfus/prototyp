@@ -12,7 +12,7 @@ window.Räume = {
     Zimmer_Vergangenheit: {
 
         mögliche_Aktionen: {
-            gehe_zu: { Ziel_Raum_Name: "Wiese", Luan_10: { links: 400, oben: 60, kommt_von: { links: 400, oben: 0 } } }
+            gehe_zu: { Ziel_Raum_Name: "Wiese", Luan_10: { links: 310, oben: 445, kommt_von: { links: 0, oben: 300 } } }
         }
 
     },
@@ -39,8 +39,12 @@ window.Räume = {
     }
 };
 
-
 window.Gegenstände = {
+
+"Stadt": {
+
+        wo: { Raum_Name: "Wiese", links: 78, oben: -20, breit: 500, hoch: 500 },
+    },
 
     "Bücher": {
 
@@ -107,7 +111,7 @@ window.Gegenstände = {
 
     "Haus": {
 
-        wo: { Raum_Name: "Wiese", links: 175, oben: 160, breit: 100, hoch: 100 },
+        wo: { Raum_Name: "Wiese", links: 175, oben: 165, breit: 100, hoch: 100 },
 
         mögliche_Aktionen: {
             gehe_zu: {
@@ -120,13 +124,26 @@ window.Gegenstände = {
 
     "Labor_Gebäude": {
 
-        wo: { Raum_Name: "Wiese", links: 400, oben: 160, breit: 100, hoch: 100 },
+        wo: { Raum_Name: "Wiese", links: 400, oben: 165, breit: 100, hoch: 100 },
 
         mögliche_Aktionen: {
             gehe_zu: {
                 wo: "im_Raum",
                 Ziel_Raum_Name: "Labor",
                 Luan_10: { links: 400, oben: 60, kommt_von: { links: 400, oben: 0 } }
+            }
+        }
+    },
+
+    "Höhle_von_aussen": {
+
+        wo: { Raum_Name: "Wiese", links: 0, oben: 188, breit: 140, hoch: 300 },
+
+        mögliche_Aktionen: {
+            gehe_zu: {
+                wo: "im_Raum",
+                Ziel_Raum_Name: "Höhle_Vergangenheit",
+                Luan_10: { links: 300, oben: 460, kommt_von: { links: 380, oben: 90 } }
             }
         }
     }
