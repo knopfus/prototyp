@@ -67,17 +67,14 @@ window.Spiel = (function(Räume, Gegenstände, Aktionen, Spielstand) {
 function Gegenstände_in_Besitz_anzeigen() {
     for (var Gegenstand_Name in Spiel.Gegenstände) {
         var Gegenstand = Spiel.Gegenstände[Gegenstand_Name];
-        var visibility;
-        if (Spielstand.Gegenstände_in_Besitz.includes(Gegenstand)) {
-            visibility = "visible";
-        } else {
-            visibility = "hidden";
-        }
-
         var element = document.getElementById( "Gegenstand_in_Besitz_" + Gegenstand_Name );
 
         if (element != null) {
-            element.style.visibility = visibility;
+            if (Spielstand.Gegenstände_in_Besitz.includes(Gegenstand)) {
+                element.style.display = ""; // display von CSS erben
+            } else {
+                element.style.display = "none"; // display mit "none" übersteuern
+            }
         }
     }
 }
@@ -141,14 +138,16 @@ function bereite_Spiel_vor() {
 
 
         // ... und nun nochmal das gleiche Prinzip im Besitz
-        var Gegenstand_in_Besitz_Vorlage = document.getElementById("Gegenstand_in_Besitz_Vorlage");
-        var Besitz_div = document.getElementById("Besitz");
-        var Gegenstand_in_Besitz_div = Gegenstand_in_Besitz_Vorlage.cloneNode(true);
-        var Gegenstand_in_Besitz_img = Gegenstand_in_Besitz_div.getElementsByTagName("img")[0];
+        if (Gegenstand.mögliche_Aktionen && Gegenstand.mögliche_Aktionen.nehmen) {
+            var Gegenstand_in_Besitz_Vorlage = document.getElementById("Gegenstand_in_Besitz_Vorlage");
+            var Besitz_div = document.getElementById("Besitz");
+            var Gegenstand_in_Besitz_div = Gegenstand_in_Besitz_Vorlage.cloneNode(true);
+            var Gegenstand_in_Besitz_img = Gegenstand_in_Besitz_div.getElementsByTagName("img")[0];
 
-        Gegenstand_in_Besitz_div.setAttribute("id", "Gegenstand_in_Besitz_" + Gegenstand_Name);
-        Gegenstand_in_Besitz_img.setAttribute("src", Gegenstand_Name + ".png");
-        Besitz_div.appendChild(Gegenstand_in_Besitz_div);
+            Gegenstand_in_Besitz_div.setAttribute("id", "Gegenstand_in_Besitz_" + Gegenstand_Name);
+            Gegenstand_in_Besitz_img.setAttribute("src", Gegenstand_Name + ".png");
+            Besitz_div.appendChild(Gegenstand_in_Besitz_div);
+        }
 
     }
 

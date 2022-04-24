@@ -30,6 +30,7 @@ window.Räume = {
         mögliche_Aktionen: {
             gehe_zu: { Ziel_Raum_Name: "Wiese", Luan_10: { links: 200, oben: 490 } }
         }
+
     },
 
     Wiese: {
@@ -41,9 +42,10 @@ window.Räume = {
 
 window.Gegenstände = {
 
-"Stadt": {
+    "Stadt": {
 
-        wo: { Raum_Name: "Wiese", links: 78, oben: -20, breit: 500, hoch: 500 },
+        wo: { Raum_Name: "Wiese", links: 78, oben: -20, breit: 500, hoch: 500 }
+
     },
 
     "Bücher": {
@@ -165,7 +167,7 @@ window.Aktionen = {
 
     nehmen: function( Gegenstand, Raum, Spielstand, Aktion ) {
 
-        Raum.Gegenstände.entfernen(Gegenstand);
+        Raum.Gegenstände.entfernen( Gegenstand );
         Spielstand.Gegenstände_in_Besitz.hinzufügen( Gegenstand );
 
     },
