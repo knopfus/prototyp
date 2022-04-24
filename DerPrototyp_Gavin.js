@@ -12,7 +12,7 @@ window.Räume = {
     Zimmer_Vergangenheit: {
 
         mögliche_Aktionen: {
-            gehe_zu: { Ziel_Raum_Name: "Labor", Luan_10: { links: 400, oben: 60, kommt_von: { links: 400, oben: 0 } } }
+            gehe_zu: { Ziel_Raum_Name: "Wiese", Luan_10: { links: 400, oben: 60, kommt_von: { links: 400, oben: 0 } } }
         }
 
     },
@@ -114,6 +114,19 @@ window.Gegenstände = {
                 wo: "im_Raum",
                 Ziel_Raum_Name: "Zimmer_Vergangenheit",
                 Luan_10: { links: 200, oben: 60, kommt_von: { links: 200, oben: 0 } }
+            }
+        }
+    },
+
+    "Labor_Gebäude": {
+
+        wo: { Raum_Name: "Wiese", links: 400, oben: 160, breit: 100, hoch: 100 },
+
+        mögliche_Aktionen: {
+            gehe_zu: {
+                wo: "im_Raum",
+                Ziel_Raum_Name: "Labor",
+                Luan_10: { links: 400, oben: 60, kommt_von: { links: 400, oben: 0 } }
             }
         }
     }
