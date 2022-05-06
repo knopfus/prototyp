@@ -255,7 +255,7 @@ window.Aktionen = {
     /*einfallen: function( Gegenstand, Raum, Spielstand, Aktion ) {
 
         if (Aktion.eingefallen == false) {
-            Spielstand.aktuelle_Ideen += Aktion.zusätzliche_Idee;
+            Spielstand.aktuelle_Ideen += Aktion.zusätzliche_Ideen;
         }
 
         Aktion.eingefallen = true;
@@ -286,6 +286,7 @@ window.Spielstand = {
 
     Gegenstände_in_Besitz: [],
 
-    aktueller_IQ: 130
+    aktueller_IQ: 130,
 
+    aktuelle_Ideen: 0
 }

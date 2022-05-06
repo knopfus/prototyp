@@ -38,5 +38,10 @@
       font: bold 1.5em fantasy;
   }
 
+  #Ideen {
+      padding: 10px;
+      font: bold 1.5em fantasy;
+  }
+
   #Luan_10 { height: 75px; width: 75px; font-size: 75px; }
   #Luan_12 { height: 75px; width: 75px; font-size: 75px; visibility: hidden; }

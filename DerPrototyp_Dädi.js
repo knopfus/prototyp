@@ -162,6 +162,8 @@ function zeige_Spiel_an() {
 
     document.getElementById("IQ").innerText = "IQ: " + Spiel.Spielstand.aktueller_IQ;
 
+    document.getElementById("Ideen").innerText = "Ideen: " + Spiel.Spielstand.aktuelle_Ideen;
+
     document.getElementById("Raum-Bild").src = Spiel.Spielstand.aktueller_Raum_Name + ".png";
 
     var Luan_10 = Spiel.Spielstand.Luan_10,
