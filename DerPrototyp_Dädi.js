@@ -233,7 +233,7 @@ for (var Gegenstand_Name in Spiel.Gegenstände) {
         return function() {
 
             var Aktion = Gegenstand.mögliche_Aktionen[Spiel.Spielstand.aktuelle_Aktion_Name];
-            if ( Aktion && Aktion.wo == "im_Raum" ) {
+            if ( Aktion && (Aktion.wo == "im_Raum" || Array.isArray(Aktion.wo) && Aktion.wo.includes("im_Raum") )) {
                 Aktion.ausführen();
                 Spiel.Spielstand.aktuelle_Aktion_Name = "";
                 zeige_Spiel_an();
@@ -247,7 +247,7 @@ for (var Gegenstand_Name in Spiel.Gegenstände) {
             return function() {
 
                 var Aktion = Gegenstand.mögliche_Aktionen[Spiel.Spielstand.aktuelle_Aktion_Name];
-                if ( Aktion && Aktion.wo == "im_Besitz" ) {
+                if ( Aktion && (Aktion.wo == "im_Besitz" || Array.isArray(Aktion.wo) && Aktion.wo.includes("im_Besitz")) ) {
                     Aktion.ausführen();
                     Spiel.Spielstand.aktuelle_Aktion_Name = "";
                     zeige_Spiel_an();

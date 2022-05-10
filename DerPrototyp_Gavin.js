@@ -99,7 +99,7 @@ window.Gegenstände = {
 
         mögliche_Aktionen: {
             nehmen: { wo: "im_Raum" },
-            einfallen: { wo: "im_Raum", zusätzliche_Ideen: 2, eingefallen: false }
+            einfallen: { wo: [ "im_Raum", "im_Besitz" ], zusätzliche_Ideen: 2, eingefallen: false }
         }
 
     },
@@ -111,7 +111,7 @@ window.Gegenstände = {
 
         mögliche_Aktionen: {
             nehmen: { wo: "im_Raum" },
-            einfallen: { wo: "im_Raum", zusätzliche_Ideen: 2, eingefallen: false }
+            einfallen: { wo: [ "im_Raum", "im_Besitz" ], zusätzliche_Ideen: 2, eingefallen: false }
         }
 
     },
@@ -267,10 +267,11 @@ window.Aktionen = {
         Spielstand.Luan_10.oben = Aktion.Luan_10.oben;
         Spielstand.Luan_10.kommt_von = Aktion.Luan_10.kommt_von;
 
-        Spielstand.Luan_12.links = Aktion.Luan_12.links;
-        Spielstand.Luan_12.oben = Aktion.Luan_12.oben;
-        Spielstand.Luan_12.kommt_von = Aktion.Luan_12.kommt_von;
-
+        if (Aktion.Luan_12) {
+            Spielstand.Luan_12.links = Aktion.Luan_12.links;
+            Spielstand.Luan_12.oben = Aktion.Luan_12.oben;
+            Spielstand.Luan_12.kommt_von = Aktion.Luan_12.kommt_von;
+        }
     },
 
     nehmen: function( Gegenstand, Raum, Spielstand, Aktion ) {
