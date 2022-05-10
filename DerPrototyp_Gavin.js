@@ -93,6 +93,29 @@ window.Gegenstände = {
 
     },
 
+    "Pläne_1": {
+
+        wo: { Raum_Name: "Zimmer_Gegenwart", links: 500, oben: 270, breit: 75, hoch: 100 },
+
+        mögliche_Aktionen: {
+            nehmen: { wo: "im_Raum" },
+            einfallen: { wo: "im_Raum", zusätzliche_Ideen: 2, eingefallen: false }
+        }
+
+    },
+
+
+    "Pläne_2": {
+
+        wo: { Raum_Name: "Zimmer_Gegenwart", links: 550, oben: 300, breit: 75, hoch: 100 },
+
+        mögliche_Aktionen: {
+            nehmen: { wo: "im_Raum" },
+            einfallen: { wo: "im_Raum", zusätzliche_Ideen: 2, eingefallen: false }
+        }
+
+    },
+
     "Zeitmaschine_Höhle_Vergangenheit": {
 
         wo: { Raum_Name: "Höhle_Vergangenheit", links: 669, oben: 480, breit: 80, hoch: 150, gedreht: 263 },
@@ -252,7 +275,7 @@ window.Aktionen = {
 
     },
 
-    /*einfallen: function( Gegenstand, Raum, Spielstand, Aktion ) {
+    einfallen: function( Gegenstand, Raum, Spielstand, Aktion ) {
 
         if (Aktion.eingefallen == false) {
             Spielstand.aktuelle_Ideen += Aktion.zusätzliche_Ideen;
@@ -260,7 +283,7 @@ window.Aktionen = {
 
         Aktion.eingefallen = true;
 
-    },*/
+    },
 
     lernen: function( Gegenstand, Raum, Spielstand, Aktion ) {
 
