@@ -124,7 +124,8 @@ window.Gegenstände = {
             gehe_zu: {
                 wo: "im_Raum",
                 Ziel_Raum_Name: "Zimmer_Gegenwart",
-                Luan_10: { links: 520, oben: 72, kommt_von: { links: 550, oben: 71 } }
+                Luan_10: { links: 520, oben: 72, kommt_von: { links: 550, oben: 71 } },
+                Luan_12: { links: 400, oben: 72, kommt_von: { links: 300, oben: 72 } }
             }
         }
 
@@ -266,6 +267,10 @@ window.Aktionen = {
         Spielstand.Luan_10.oben = Aktion.Luan_10.oben;
         Spielstand.Luan_10.kommt_von = Aktion.Luan_10.kommt_von;
 
+        Spielstand.Luan_12.links = Aktion.Luan_12.links;
+        Spielstand.Luan_12.oben = Aktion.Luan_12.oben;
+        Spielstand.Luan_12.kommt_von = Aktion.Luan_12.kommt_von;
+
     },
 
     nehmen: function( Gegenstand, Raum, Spielstand, Aktion ) {
@@ -304,6 +309,8 @@ window.Spielstand = {
     vorheriger_Raum_Name: "",
 
     Luan_10: { links: 200, oben: 490 },
+
+    Luan_12: { links: -500, oben: -500 },
 
     aktuelle_Aktion_Name: "",
 

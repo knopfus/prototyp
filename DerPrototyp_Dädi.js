@@ -185,6 +185,25 @@ function zeige_Spiel_an() {
         Luan_10_div.style.top = Luan_10.oben + "px";
     }
 
+    var Luan_12 = Spiel.Spielstand.Luan_12,
+    Luan_12_div = document.getElementById("Luan_12");
+
+Luan_12_div.style.transition = "";
+
+if (Luan_12.kommt_von) {
+    Luan_12_div.style.left = Luan_12.kommt_von.links + "px";
+    Luan_12_div.style.top = Luan_12.kommt_von.oben + "px";
+    Luan_12.kommt_von = null;
+    window.setTimeout(function() {
+        Luan_12_div.style.transition = "left 1s, top 1s";
+        Luan_12_div.style.left = Luan_12.links + "px";
+        Luan_12_div.style.top = Luan_12.oben + "px";
+    }, 0);
+} else {
+    Luan_12_div.style.left = Luan_12.links + "px";
+    Luan_12_div.style.top = Luan_12.oben + "px";
+}
+
 
     Gegenstände_in_Besitz_anzeigen();
     Gegenstände_im_Raum_anzeigen();
