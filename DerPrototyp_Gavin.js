@@ -118,7 +118,7 @@ window.Gegenstände = {
 
     "Zeitmaschine_Höhle_Vergangenheit": {
 
-        wo: { Raum_Name: "Höhle_Vergangenheit", links: 669, oben: 480, breit: 80, hoch: 150, gedreht: 263 },
+        wo: { Raum_Name: "Höhle_Vergangenheit", links: 619, oben: -9, breit: 100, hoch: 170, gedreht: 263 },
 
         mögliche_Aktionen: {
             gehe_zu: {
